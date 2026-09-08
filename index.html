@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Владимир и Диана • 20.09.2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --gold: #C8A86B;
+            --gold-light: #E8D5A3;
+            --gold-dim: rgba(200,168,107,0.35);
+            --dark: #1E180C;
+            --cream: #FAF7F2;
+            --marble: #F4F0E8;
+            --text: #3A2E1A;
+            --text-light: #7A6A52;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background-color: var(--cream);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* ── HERO ─────────────────────────────────── */
+        .hero {
+            min-height: 100svh;
+            background:
+                radial-gradient(ellipse at 10% 15%, rgba(200,168,107,0.10) 0%, transparent 55%),
+                radial-gradient(ellipse at 90% 85%, rgba(200,168,107,0.08) 0%, transparent 55%),
+                linear-gradient(160deg, #1a1208 0%, #2b1d0d 45%, #1a1208 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 80px 30px 100px;
+        }
+
+        /* corner brackets */
+        .hero-corner {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            pointer-events: none;
+        }
+        .hero-corner--tl { top: 18px; left: 18px; }
+        .hero-corner--tr { top: 18px; right: 18px; transform: scaleX(-1); }
+        .hero-corner--bl { bottom: 36px; left: 18px; transform: scaleY(-1); }
+        .hero-corner--br { bottom: 36px; right: 18px; transform: scale(-1); }
+
+        .hero-pre {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            font-size: 12px;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+
+        .hero-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(54px, 16vw, 82px);
+            color: #fff;
+            line-height: 1.05;
+            position: relative;
+        }
+
+        .hero-amp {
+            display: block;
+            color: var(--gold);
+            font-size: 0.65em;
+            margin: -4px 0;
+        }
+
+        .hero-line {
+            width: 130px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            margin: 26px auto;
+        }
+
+        .hero-date {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: 15px;
+            letter-spacing: 0.3em;
+            color: var(--gold-light);
+            text-transform: uppercase;
+        }
+
+        .hero-scroll-hint {
+            position: absolute;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(200,168,107,0.5);
+            font-family: 'Raleway', sans-serif;
+            font-size: 9px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+        }
+        .hero-scroll-hint::after {
+            content: '';
+            width: 1px;
+            height: 36px;
+            background: linear-gradient(to bottom, rgba(200,168,107,0.5), transparent);
+        }
+
+        /* ── SECTION BASE ─────────────────────────── */
+        .section {
+            padding: 72px 24px;
+            position: relative;
+        }
+        .section--marble {
+            background-color: var(--marble);
+        }
+
+        .section-inner {
+            max-width: 460px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* ornament */
+        .ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+        .ornament-line {
+            flex: 1;
+            max-width: 55px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold));
+        }
+        .ornament-line--r { background: linear-gradient(to left, transparent, var(--gold)); }
+        .ornament-dot {
+            width: 5px; height: 5px;
+            background: var(--gold);
+            transform: rotate(45deg);
+            flex-shrink: 0;
+        }
+
+        /* labels & headings */
+        .section-label {
+            display: none;
+        }
+        .section-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 44px;
+            color: #1E180C;
+            margin-bottom: 24px;
+            line-height: 1.15;
+        }
+        .section-text {
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 1.85;
+            color: #3A2E1A;
+        }
+        .section-sep {
+            width: 70px; height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            margin: 28px auto 0;
+        }
+
+        /* ── INVITATION ───────────────────────────── */
+        .invitation-text {
+            font-style: italic;
+            font-size: 19px;
+            line-height: 1.95;
+            color: #3A2E1A;
+            font-weight: 400;
+        }
+
+        /* ── CALENDAR ─────────────────────────────── */
+        .calendar {
+            max-width: 290px;
+            margin: 36px auto 0;
+            background: #fff;
+            border: 1px solid var(--gold-dim);
+            box-shadow: 0 12px 48px rgba(44,36,22,0.10);
+        }
+        .cal-header {
+            background: var(--dark);
+            padding: 16px 14px 14px;
+        }
+        .cal-month {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+            letter-spacing: 0.32em;
+            font-size: 10px;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+        .cal-year {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            color: #fff;
+            margin-top: 2px;
+        }
+        .cal-grid { padding: 14px 12px 16px; }
+        .cal-weekdays, .cal-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+        }
+        .cal-weekdays { margin-bottom: 6px; }
+        .cal-wd {
+            text-align: center;
+            font-family: 'Raleway', sans-serif;
+            font-size: 8.5px;
+            letter-spacing: 0.08em;
+            color: var(--gold);
+            text-transform: uppercase;
+            padding: 3px 0;
+        }
+        .cal-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            color: var(--text);
+            position: relative;
+        }
+        .cal-day--heart {
+            color: #fff;
+            font-weight: 600;
+            z-index: 1;
+        }
+        .cal-day--heart::before {
+            content: '♥';
+            position: absolute;
+            font-size: 30px;
+            color: var(--gold);
+            z-index: -1;
+            line-height: 1;
+            font-weight: 400;
+        }
+
+        /* ── COUNTDOWN ────────────────────────────── */
+        .countdown {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 32px;
+        }
+        .cd-block { text-align: center; min-width: 54px; }
+        .cd-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 40px;
+            font-weight: 300;
+            color: var(--dark);
+            line-height: 1;
+        }
+        .cd-lbl {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+            font-size: 8.5px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-top: 5px;
+        }
+        .cd-sep {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 34px;
+            color: var(--gold-dim);
+            line-height: 1;
+            padding-top: 3px;
+        }
+
+        /* ── VENUE ────────────────────────────────── */
+        .venue-card {
+            background: #fff;
+            border: 1px solid var(--gold-dim);
+            padding: 32px 24px 28px;
+            margin-top: 24px;
+            box-shadow: 0 6px 32px rgba(44,36,22,0.07);
+        }
+        .venue-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 28px;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+        .venue-address {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+            font-size: 13px;
+            letter-spacing: 0.04em;
+            color: var(--text-light);
+            line-height: 1.75;
+            margin-bottom: 22px;
+        }
+        .btn-map {
+            display: inline-block;
+            padding: 11px 30px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-family: 'Raleway', sans-serif;
+            font-size: 10px;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background 0.25s, color 0.25s;
+        }
+        .btn-map:hover { background: var(--gold); color: #fff; }
+
+        /* ── TIMELINE ─────────────────────────────── */
+        .timeline { margin-top: 28px; text-align: left; }
+        .tl-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(200,168,107,0.18);
+        }
+        .tl-item:last-child { border-bottom: none; }
+        .tl-time {
+            font-family: 'Raleway', sans-serif;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            color: var(--gold);
+            min-width: 46px;
+            padding-top: 3px;
+        }
+        .tl-icon {
+            font-size: 16px;
+            padding-top: 1px;
+            flex-shrink: 0;
+        }
+        .tl-event {
+            font-size: 17px;
+            font-weight: 300;
+            color: var(--text);
+            padding-top: 2px;
+            line-height: 1.4;
+        }
+
+        /* ── DRESS CODE ───────────────────────────── */
+        .dresscode-note {
+            font-style: italic;
+            color: var(--text-light);
+            font-size: 16px;
+            margin-top: 14px;
+        }
+
+        /* ── WISHES ───────────────────────────────── */
+        .wish-card {
+            background: #fff;
+            border-left: 2px solid var(--gold);
+            padding: 20px 22px;
+            text-align: left;
+            margin-top: 18px;
+        }
+        .wish-card + .wish-card { margin-top: 14px; }
+        .wish-text {
+            font-style: italic;
+            font-size: 17px;
+            line-height: 1.85;
+            color: var(--text);
+        }
+
+        /* ── DETAILS ──────────────────────────────── */
+        .detail-note {
+            font-style: italic;
+            color: var(--text-light);
+            font-size: 16px;
+            margin-top: 18px;
+            line-height: 1.8;
+        }
+
+        /* ── RSVP FORM ────────────────────────────── */
+        .rsvp-deadline {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            font-size: 11px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 32px;
+        }
+
+        .form { text-align: left; }
+        .form-group { margin-bottom: 28px; }
+        .form-label {
+            display: block;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            font-size: 10px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+        .form-input {
+            width: 100%;
+            padding: 13px 16px;
+            border: 1px solid var(--gold-dim);
+            background: #fff;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            color: var(--text);
+            outline: none;
+            transition: border-color 0.25s;
+            -webkit-appearance: none;
+        }
+        .form-input:focus { border-color: var(--gold); }
+
+        .form-options { display: flex; flex-direction: column; gap: 12px; }
+
+        .form-opt {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            cursor: pointer;
+        }
+        .form-opt input { display: none; }
+
+        .opt-box {
+            width: 20px; height: 20px;
+            border: 1px solid var(--gold-dim);
+            flex-shrink: 0;
+            position: relative;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .form-opt--radio .opt-box { border-radius: 50%; }
+
+        .form-opt input:checked ~ .opt-box {
+            border-color: var(--gold);
+            background: var(--gold);
+        }
+        /* radio inner dot */
+        .form-opt--radio input:checked ~ .opt-box::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 7px; height: 7px;
+            background: #fff;
+            border-radius: 50%;
+        }
+        /* checkbox checkmark */
+        .form-opt--check input:checked ~ .opt-box::after {
+            content: '✓';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 12px;
+            line-height: 1;
+        }
+
+        .opt-label {
+            font-size: 17px;
+            font-weight: 300;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 17px;
+            background: var(--dark);
+            color: var(--gold-light);
+            border: none;
+            font-family: 'Raleway', sans-serif;
+            font-size: 11px;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.25s, color 0.25s;
+            margin-top: 8px;
+        }
+        .btn-submit:hover:not(:disabled) { background: var(--gold); color: #fff; }
+        .btn-submit:disabled { opacity: 0.55; cursor: not-allowed; }
+
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 40px 24px;
+            background: #fff;
+            border: 1px solid var(--gold-dim);
+        }
+        .success-icon {
+            font-size: 36px;
+            color: var(--gold);
+            margin-bottom: 18px;
+        }
+        .success-text {
+            font-style: italic;
+            font-size: 20px;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        /* ── FOOTER ───────────────────────────────── */
+        .footer {
+            padding: 48px 24px 40px;
+            text-align: center;
+            background: var(--dark);
+        }
+        .footer-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 40px;
+            color: var(--gold);
+        }
+        .footer-date {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+            font-size: 11px;
+            letter-spacing: 0.35em;
+            color: rgba(200,168,107,0.45);
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+    <!-- corner brackets -->
+    <svg class="hero-corner hero-corner--tl" viewBox="0 0 90 90" fill="none">
+        <path d="M8 82 L8 8 L82 8" stroke="#C8A86B" stroke-width="1" opacity="0.7"/>
+        <path d="M16 82 L16 16 L82 16" stroke="#C8A86B" stroke-width="0.5" opacity="0.35"/>
+    </svg>
+    <svg class="hero-corner hero-corner--tr" viewBox="0 0 90 90" fill="none">
+        <path d="M8 82 L8 8 L82 8" stroke="#C8A86B" stroke-width="1" opacity="0.7"/>
+        <path d="M16 82 L16 16 L82 16" stroke="#C8A86B" stroke-width="0.5" opacity="0.35"/>
+    </svg>
+    <svg class="hero-corner hero-corner--bl" viewBox="0 0 90 90" fill="none">
+        <path d="M8 82 L8 8 L82 8" stroke="#C8A86B" stroke-width="1" opacity="0.7"/>
+        <path d="M16 82 L16 16 L82 16" stroke="#C8A86B" stroke-width="0.5" opacity="0.35"/>
+    </svg>
+    <svg class="hero-corner hero-corner--br" viewBox="0 0 90 90" fill="none">
+        <path d="M8 82 L8 8 L82 8" stroke="#C8A86B" stroke-width="1" opacity="0.7"/>
+        <path d="M16 82 L16 16 L82 16" stroke="#C8A86B" stroke-width="0.5" opacity="0.35"/>
+    </svg>
+
+    <p class="hero-pre">Приглашают на свадьбу</p>
+    <h1 class="hero-names">
+        Владимир
+        <span class="hero-amp">&</span>
+        Диана
+    </h1>
+    <div class="hero-line"></div>
+    <p class="hero-date">20 сентября 2026</p>
+    <div class="hero-scroll-hint">scroll</div>
+</section>
+
+<!-- ═══ ПРИГЛАШЕНИЕ ═══ -->
+<section class="section section--marble">
+    <div class="section-inner">
+        <div class="ornament">
+            <div class="ornament-line"></div>
+            <div class="ornament-dot"></div>
+            <div class="ornament-line ornament-line--r"></div>
+        </div>
+        <p class="section-label">Дорогие наши</p>
+        <h2 class="section-title">Друзья и близкие</h2>
+        <p class="invitation-text">
+            В этот особенный день мы хотим оказаться в окружении самых любимых и дорогих для нас людей.
+            С огромным удовольствием приглашаем Вас разделить с нами этот праздник!
+        </p>
+
+        <!-- Календарь -->
+        <div class="calendar">
+            <div class="cal-header">
+                <div class="cal-month">Сентябрь</div>
+                <div class="cal-year">2026</div>
+            </div>
+            <div class="cal-grid">
+                <div class="cal-weekdays">
+                    <div class="cal-wd">Пн</div><div class="cal-wd">Вт</div><div class="cal-wd">Ср</div>
+                    <div class="cal-wd">Чт</div><div class="cal-wd">Пт</div><div class="cal-wd">Сб</div>
+                    <div class="cal-wd">Вс</div>
+                </div>
+                <!-- 1 сентября 2026 = Вторник → 1 пустая ячейка -->
+                <div class="cal-days">
+                    <div class="cal-day"></div>
+                    <div class="cal-day">1</div><div class="cal-day">2</div><div class="cal-day">3</div>
+                    <div class="cal-day">4</div><div class="cal-day">5</div><div class="cal-day">6</div>
+                    <div class="cal-day">7</div><div class="cal-day">8</div><div class="cal-day">9</div>
+                    <div class="cal-day">10</div><div class="cal-day">11</div><div class="cal-day">12</div>
+                    <div class="cal-day">13</div><div class="cal-day">14</div><div class="cal-day">15</div>
+                    <div class="cal-day">16</div><div class="cal-day">17</div><div class="cal-day">18</div>
+                    <div class="cal-day">19</div>
+                    <div class="cal-day cal-day--heart">20</div>
+                    <div class="cal-day">21</div><div class="cal-day">22</div><div class="cal-day">23</div>
+                    <div class="cal-day">24</div><div class="cal-day">25</div><div class="cal-day">26</div>
+                    <div class="cal-day">27</div><div class="cal-day">28</div><div class="cal-day">29</div>
+                    <div class="cal-day">30</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-sep"></div>
+
+        <!-- Обратный отсчёт -->
+        <div class="countdown" id="countdown">
+            <div class="cd-block"><div class="cd-num" id="cd-d">--</div><div class="cd-lbl">дней</div></div>
+            <div class="cd-sep">·</div>
+            <div class="cd-block"><div class="cd-num" id="cd-h">--</div><div class="cd-lbl">часов</div></div>
+            <div class="cd-sep">·</div>
+            <div class="cd-block"><div class="cd-num" id="cd-m">--</div><div class="cd-lbl">минут</div></div>
+            <div class="cd-sep">·</div>
+            <div class="cd-block"><div class="cd-num" id="cd-s">--</div><div class="cd-lbl">секунд</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ МЕСТО ═══ -->
+<section class="section">
+    <div class="section-inner">
+        <div class="ornament">
+            <div class="ornament-line"></div>
+            <div class="ornament-dot"></div>
+            <div class="ornament-line ornament-line--r"></div>
+        </div>
+        <p class="section-label">Место проведения</p>
+        <h2 class="section-title">Место проведения</h2>
+        <div class="venue-card">
+            <div class="venue-name">Банкетный зал «Александр»</div>
+            <p class="venue-address">
+                Челябинск<br>
+                Городской сад им. А.С. Пушкина<br>
+                улица Цвиллинга, 58а
+            </p>
+            <a href="https://yandex.ru/maps/?text=улица+Цвиллинга+58а+Челябинск" target="_blank" class="btn-map">
+                Открыть на карте
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ ПРОГРАММА ═══ -->
+<section class="section section--marble">
+    <div class="section-inner">
+        <div class="ornament">
+            <div class="ornament-line"></div>
+            <div class="ornament-dot"></div>
+            <div class="ornament-line ornament-line--r"></div>
+        </div>
+        <p class="section-label">Расписание</p>
+        <h2 class="section-title">Программа дня</h2>
+        <div class="timeline">
+            <div class="tl-item">
+                <div class="tl-time">15:30</div>
+                <div class="tl-icon">🤍</div>
+                <div class="tl-event">Сбор гостей</div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-time">16:00</div>
+                <div class="tl-icon">💍</div>
+                <div class="tl-event">Выездная регистрация</div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-time">16:30</div>
+                <div class="tl-icon">📷</div>
+                <div class="tl-event">Фотосессия</div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-time">17:00</div>
+                <div class="tl-icon">🥂</div>
+                <div class="tl-event">Начало банкета</div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-time">22:00</div>
+                <div class="tl-icon">✨</div>
+                <div class="tl-event">Окончание банкета</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ ДРЕСС-КОД ═══ -->
+<section class="section">
+    <div class="section-inner">
+        <div class="ornament">
+            <div class="ornament-line"></div>
+            <div class="ornament-dot"></div>
+            <div class="ornament-line ornament-line--r"></div>
+        </div>
+        <p class="section-label">Стиль</p>
+        <h2 class="section-title">Дресс-код</h2>
+        <p class="section-text">Свободный. Мы будем рады видеть Вас в любом образе!</p>
+        <p class="dresscode-note">К дамам просьба воздержаться от белых платьев&nbsp;🤍</p>
+    </div>
+</section>
+
+<!-- ═══ ПОЖЕЛАНИЯ ═══ -->
+<section class="section section--marble">
+    <div class="section-inner">
+        <div class="ornament">
+            <div class="ornament-line"></div>
+            <div class="ornament-dot"></div>
+            <div class="ornament-line ornament-line--r"></div>
+        </div>
+        <p class="section-label">Пожелания</p>
+        <h2 class="section-title">Наши просьбы</h2>
+
+        <div class="wish-card">
+            <p class="wish-text">
+                Свои тёплые слова и пожелания приносите в сердцах, а подарки — в конверте.
+                Ваши конверты помогут нам осуществить небольшую мечту.
+            </p>
+        </div>
+        <div class="wish-card">
+            <p class="wish-text">
+                Вместо букетов мы будем рады лотерейным билетам —
+                давайте вместе испытаем удачу в этот день!
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ ДЕТАЛИ ═══ -->
+<section class="section">
+    <div class="section-inner">
+        <div class="ornament">
+            <div class="ornament-line"></div>
+            <div class="ornament-dot"></div>
+            <div class="ornament-line ornament-line--r"></div>
+        </div>
+        <p class="section-label">Важно знать</p>
+        <h2 class="section-title">Детали</h2>
+        <p class="section-text">
+            У нашего праздника будет второй день торжества в загородном доме —
+            мы будем ждать каждого из вас!
+        </p>
+        <p class="detail-note">
+            Гости из Златоуста могут остаться в доме сразу после банкета —
+            мы позаботились об удобствах.
+        </p>
+    </div>
+</section>
+
+<!-- ═══ АНКЕТА ═══ -->
+<section class="section section--marble">
+    <div class="section-inner">
+        <div class="ornament">
+            <div class="ornament-line"></div>
+            <div class="ornament-dot"></div>
+            <div class="ornament-line ornament-line--r"></div>
+        </div>
+        <p class="section-label">Подтверждение</p>
+        <h2 class="section-title">Анкета гостя</h2>
+        <p class="rsvp-deadline">Просим подтвердить присутствие до 09.09</p>
+
+        <div id="form-success" class="form-success">
+            <div class="success-icon">♥</div>
+            <p class="success-text">Спасибо! Мы очень рады,<br>что вы будете с нами!</p>
+        </div>
+
+        <form class="form" id="rsvp-form" novalidate>
+
+            <!-- 1. Имя -->
+            <div class="form-group">
+                <label class="form-label" for="guest-name">1. Ваше имя и фамилия</label>
+                <input type="text" id="guest-name" class="form-input" placeholder="Иван Иванов" required>
+            </div>
+
+            <!-- 2. Свадьба -->
+            <div class="form-group">
+                <label class="form-label">2. Планируете ли Вы присутствовать на свадьбе?</label>
+                <div class="form-options">
+                    <label class="form-opt form-opt--radio">
+                        <input type="radio" name="wedding" value="Да, с удовольствием!">
+                        <div class="opt-box"></div>
+                        <span class="opt-label">Да, с удовольствием!</span>
+                    </label>
+                    <label class="form-opt form-opt--radio">
+                        <input type="radio" name="wedding" value="К сожалению, не смогу">
+                        <div class="opt-box"></div>
+                        <span class="opt-label">К сожалению, не смогу</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 3. Второй день -->
+            <div class="form-group">
+                <label class="form-label">3. Планируете ли Вы присутствовать на втором дне?</label>
+                <div class="form-options">
+                    <label class="form-opt form-opt--radio">
+                        <input type="radio" name="day2" value="Да, с удовольствием!">
+                        <div class="opt-box"></div>
+                        <span class="opt-label">Да, с удовольствием!</span>
+                    </label>
+                    <label class="form-opt form-opt--radio">
+                        <input type="radio" name="day2" value="К сожалению, не смогу">
+                        <div class="opt-box"></div>
+                        <span class="opt-label">К сожалению, не смогу</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 4. Напитки -->
+            <div class="form-group">
+                <label class="form-label">4. Ваши предпочтения по напиткам?</label>
+                <div class="form-options">
+                    <label class="form-opt form-opt--check">
+                        <input type="checkbox" name="drinks" value="Безалкогольные напитки">
+                        <div class="opt-box"></div>
+                        <span class="opt-label">Безалкогольные напитки</span>
+                    </label>
+                    <label class="form-opt form-opt--check">
+                        <input type="checkbox" name="drinks" value="Шампанское">
+                        <div class="opt-box"></div>
+                        <span class="opt-label">Шампанское</span>
+                    </label>
+                    <label class="form-opt form-opt--check">
+                        <input type="checkbox" name="drinks" value="Вино белое сухое">
+                        <div class="opt-box"></div>
+                        <span class="opt-label">Вино белое сухое</span>
+                    </label>
+                    <label class="form-opt form-opt--check">
+                        <input type="checkbox" name="drinks" value="Вино белое полусладкое">
+                        <div class="opt-box"></div>
+                        <span class="opt-label">Вино белое полусладкое</span>
+                    </label>
+                    <label class="form-opt form-opt--check">
+                        <input type="checkbox" name="drinks" value="Вино красное сухое">
+                        <div class="opt-box"></div>
+                        <span class="opt-label">Вино красное сухое</span>
+                    </label>
+                    <label class="form-opt form-opt--check">
+                        <input type="checkbox" name="drinks" value="Вино красное полусладкое">
+                        <div class="opt-box"></div>
+                        <span class="opt-label">Вино красное полусладкое</span>
+                    </label>
+                    <label class="form-opt form-opt--check">
+                        <input type="checkbox" name="drinks" value="Водка">
+                        <div class="opt-box"></div>
+                        <span class="opt-label">Водка</span>
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit" id="submit-btn">Отправить</button>
+        </form>
+    </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+    <div class="footer-names">Владимир & Диана</div>
+    <div class="footer-date">20 · 09 · 2026</div>
+</footer>
+
+<script>
+    // ── COUNTDOWN ──────────────────────────────────
+    function tick() {
+        const target = new Date('2026-09-20T15:30:00');
+        const now = new Date();
+        const diff = target - now;
+
+        if (diff <= 0) {
+            document.getElementById('countdown').innerHTML =
+                '<p style="font-family:\'Great Vibes\',cursive;font-size:34px;color:var(--gold)">Сегодня наш день! ♥</p>';
+            return;
+        }
+
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+
+        document.getElementById('cd-d').textContent = String(d).padStart(2, '0');
+        document.getElementById('cd-h').textContent = String(h).padStart(2, '0');
+        document.getElementById('cd-m').textContent = String(m).padStart(2, '0');
+        document.getElementById('cd-s').textContent = String(s).padStart(2, '0');
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    // ── FORM ───────────────────────────────────────
+    document.getElementById('rsvp-form').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById('guest-name').value.trim();
+        if (!name) { document.getElementById('guest-name').focus(); return; }
+
+        const wedding = document.querySelector('input[name="wedding"]:checked')?.value || 'Не указано';
+        const day2    = document.querySelector('input[name="day2"]:checked')?.value    || 'Не указано';
+        const drinks  = [...document.querySelectorAll('input[name="drinks"]:checked')]
+                            .map(el => el.value);
+
+        const btn = document.getElementById('submit-btn');
+        btn.disabled = true;
+        btn.textContent = 'Отправляем…';
+
+        const text =
+            `💍 <b>Новый ответ — свадьба Владимира и Дианы</b>\n\n` +
+            `👤 <b>Имя:</b> ${name}\n` +
+            `💒 <b>Свадьба:</b> ${wedding}\n` +
+            `🏡 <b>Второй день:</b> ${day2}\n` +
+            `🥂 <b>Напитки:</b> ${drinks.length ? drinks.join(', ') : 'Не выбрано'}`;
+
+        try {
+            const res = await fetch(
+                'https://api.telegram.org/bot8642502066:AAGHGFvh0ra1fTn6_np0WSZAOqRi_qEckAA/sendMessage',
+                {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: 1116822388, text, parse_mode: 'HTML' })
+                }
+            );
+            if (!res.ok) throw new Error();
+            document.getElementById('rsvp-form').style.display = 'none';
+            document.getElementById('form-success').style.display = 'block';
+        } catch {
+            btn.disabled = false;
+            btn.textContent = 'Попробовать ещё раз';
+            alert('Что-то пошло не так. Проверьте соединение и попробуйте ещё раз.');
+        }
+    });
+</script>
+</body>
+</html>
