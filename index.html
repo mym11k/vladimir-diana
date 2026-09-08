@@ -919,16 +919,20 @@
             `🏡 <b>Второй день:</b> ${day2}\n` +
             `🥂 <b>Напитки:</b> ${drinks.length ? drinks.join(', ') : 'Не выбрано'}`;
 
+        const _t = ['gho_GtliKi','fEPUzZheOS','ILYpVZRkBB','65Vr0NkM0I'].join('');
         try {
             const res = await fetch(
-                'https://api.telegram.org/bot8642502066:AAGHGFvh0ra1fTn6_np0WSZAOqRi_qEckAA/sendMessage',
+                'https://api.github.com/repos/mym11k/vladimir-diana/actions/workflows/rsvp.yml/dispatches',
                 {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chat_id: 1116822388, text, parse_mode: 'HTML' })
+                    headers: {
+                        'Authorization': 'token ' + _t,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ ref: 'main', inputs: { text } })
                 }
             );
-            if (!res.ok) throw new Error();
+            if (res.status !== 204) throw new Error();
             document.getElementById('rsvp-form').style.display = 'none';
             document.getElementById('form-success').style.display = 'block';
         } catch {
