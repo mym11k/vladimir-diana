@@ -1,0 +1,14 @@
+name: rsvp
+on:
+  workflow_dispatch:
+    inputs:
+      text:
+        required: true
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMessage" \
+            -H "Content-Type: application/json" \
+            -d "{\"chat_id\": 1116822388, \"text\": $(echo '${{ inputs.text }}' | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read().strip()))'), \"parse_mode\": \"HTML\"}"
